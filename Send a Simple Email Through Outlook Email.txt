@@ -1,0 +1,29 @@
+Sub SendEmail_LateBinding()
+
+    Dim OutApp As Object
+    Dim OutMail As Object
+
+    'Create Outlook Application
+    Set OutApp = CreateObject("Outlook.Application")
+
+    'Create Email
+    Set OutMail = OutApp.CreateItem(0)
+
+    With OutMail
+        .To = "abc@gmail.com"
+        .CC = "manager@gmail.com"
+        .BCC = ""
+        .Subject = "Test Email from VBA"
+        .Body = "Hello," & vbCrLf & vbCrLf & _
+                "This is a test email sent using VBA Late Binding." & vbCrLf & vbCrLf & _
+                "Regards," & vbCrLf & _
+                "Sumit"
+
+        .Send        'Send Email
+        '.Display    'Use this instead of .Send to preview the email
+    End With
+
+    Set OutMail = Nothing
+    Set OutApp = Nothing
+
+End Sub
